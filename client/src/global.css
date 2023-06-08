@@ -1,0 +1,41 @@
+:root {
+  --primary-color: #521AF1;
+  --dark-color: #250B6C;
+  --light-color: #E4DBFF;
+  --line-color: #333333;
+  --light-line-color: #d4d4d4;
+  --light-font-color: #A7A7A7;
+  --light-background: #E8E8E8;
+  --red-light: #FEE2E2;
+  --red-light-border: #F9CCCC; 
+  --red-dark: #9A0A0A;
+  --heading-font: 'Geologica';
+  --body-font: 'Geologica';
+}
+
+html, body, #root, #root > div {
+  height: 100%;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+button {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  background-color: var(--light-background);
+
+  border: 1px solid var(--line-color);
+  border-radius: 4px;
+
+  padding: .5em;
+  margin: none;
+
+  font-family: var(--body-font);
+  font-weight: 400;
+}

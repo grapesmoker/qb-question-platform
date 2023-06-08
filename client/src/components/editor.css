@@ -1,0 +1,110 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: .5em;
+  width: 60em;
+}
+
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+.ProseMirror {
+  padding: 0.25em 1em;
+  border: 1px solid var(--light-line-color);
+  border-radius: 0.25em;
+  font-size: 1em;
+  font-family: "Times New Roman", Times, serif;
+  line-height: 1.5em;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding: 0 1rem;
+}
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  line-height: 1.1;
+}
+.ProseMirror code {
+  background-color: rgba(97, 97, 97, 0.1);
+  color: #616161;
+}
+.ProseMirror pre {
+  background: #0d0d0d;
+  color: #fff;
+  font-family: "JetBrainsMono", monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+.ProseMirror pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+}
+.ProseMirror blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid rgba(13, 13, 13, 0.1);
+}
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid rgba(13, 13, 13, 0.1);
+  margin: 2rem 0;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  column-gap: 2em;
+  font-weight: 300;
+  font-family: var(--body-font);
+  color: var(--light-font-color);
+}
+
+.editor-toolbar-buttons {
+  display: flex;
+  column-gap: 1em;
+}
+
+.editor-toolbar-copy-question {
+  background-color: var(--light-background);
+  border-color: var(--light-line-color);
+}
+
+.editor-toolbar-delete-question {
+  background-color: var(--red-light);
+  color: var(--red-dark);
+  border-color: var(--red-light-border);
+}
+
+.editor-toolbar-question-length {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1em;
+}
+
+.editor-category-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  column-gap: 2em;
+  font-family: var(--body-font);
+  font-weight: 300;
+  color: var(--text-color);
+}

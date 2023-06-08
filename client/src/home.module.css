@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.mainPanel {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-x: hidden;
+    padding: 1em 2em;
+}

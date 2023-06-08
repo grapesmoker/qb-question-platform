@@ -1,0 +1,25 @@
+.sidebar,
+.sidebarClosed {
+  border-left: 1px solid var(--line-color);
+  padding: 0.25em;
+  position: absolute;
+  top: 0;
+  right: -18vw;
+  height: 100%;
+  width: 20vw;
+  transition: right 0.3s ease-in-out;
+}
+
+.sidebar {
+  right: 0vw;
+}
+
+.sidebarToggle,
+.sidebarToggleClosed {
+  background-color: transparent;
+  height: fit-content;
+}
+
+.sidebarFlex {
+  display: flex;
+}
