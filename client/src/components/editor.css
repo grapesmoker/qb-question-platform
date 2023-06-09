@@ -108,3 +108,35 @@
   font-weight: 300;
   color: var(--text-color);
 }
+
+.editor-category-input {
+  font-family: var(--body-font);
+  font-weight: 300;
+  color: var(--text-color);
+
+  margin-left: 8px;
+}
+
+.pronunciation-guide {
+  background-color: #616161;
+  color: lime;
+}
+
+.bubble-menu {
+  display: flex;
+  background-color: var(--primary-color);
+  opacity: .9;
+  border-radius: 4px;
+}
+
+.bubble-menu button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-right: 2px solid var(--desaturated-primary);
+  border-radius: 0px !important;
+}
+
+.bubble-menu button:last-child {
+  border: none;
+}
