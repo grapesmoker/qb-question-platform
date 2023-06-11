@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Environment Setup
-To run the frontend app, you'll need an updated install of [Node](http://localhost:3000) and [npm](http://localhost:3000). Once you have those, make sure you're in the `client` directory and run `npm install` to install needed packages. After that, you can run `npm start` to start the dev server.
+To run the frontend app, you'll need an updated install of [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). Once you have those, make sure you're in the `client` directory and run `npm install` to install needed packages. After that, you can run `npm start` to start the dev server.
 
 ## Available Scripts
 
