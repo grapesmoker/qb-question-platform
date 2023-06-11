@@ -1,5 +1,6 @@
 .sidebar,
 .sidebarClosed {
+  background-color: white;
   border-left: 1px solid var(--line-color);
   padding: 0.25em;
   position: absolute;

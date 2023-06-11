@@ -24,6 +24,32 @@
     text-decoration: none;
 }
 
+.nameNotificationBox {
+    display: flex;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.setNameBox {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    padding: 20px 0px 20px 20px;
+}
+
+.setName {
+    font-size: 24px;
+}
+
+.notificationBox {
+    display: flex;
+    min-width: 56px;
+    background-color: var(--light-background);
+    color: var(--primary-color);
+    font-size: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
 .navList, .navSubList {
     display: flex;
     flex-direction: column;

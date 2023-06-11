@@ -1,0 +1,34 @@
+{
+    "questions": [
+        {
+            "answer": "Walt Whitman",
+            "category": "Literature",
+            "subcategory": "American Literature"
+        },
+        {
+            "answer": "The Changing Light at Sandover",
+            "category": "Literature",
+            "subcategory": "American Literature"
+        },
+        {
+            "answer": "Life on Mars",
+            "category": "Literature",
+            "subcategory": "American Literature"
+        },
+        {
+            "answer": "Elegy Written in a Country Churchyard",
+            "category": "Literature",
+            "subcategory": "British Literature"
+        },
+        {
+            "answer": "Terence",
+            "category": "Literature",
+            "subcategory": "British Literature"
+        },
+        {
+            "answer": "Westminster Abbey",
+            "category": "Literature",
+            "subcategory": "British Literature"
+        }
+    ]
+}

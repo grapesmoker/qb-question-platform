@@ -8,6 +8,7 @@ import Navbar from "./components/navbar";
 import Sidebar from "./components/sidebar";
 import SetAdmin from "./pages/setAdmin";
 import QuestionWriter from "./pages/questionWriter";
+import AllQuestions from "./components/allQuestions";
 
 function Home() {
   return <span>kems</span>;
@@ -40,6 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/editor" element={<QuestionWriter />} />
+              <Route path="/all-questions" element={<AllQuestions />} />
               <Route path="/set-admin" element={<SetAdmin />} />
               <Route path="*" element={<NoMatch />} />
             </Routes>

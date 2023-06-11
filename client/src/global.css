@@ -53,3 +53,13 @@ select {
 
   background-color: var(--light-background);
 }
+
+table {
+  border-collapse: collapse;
+  border: 1px solid var(--light-line-color);
+}
+
+table th, table td {
+  border: 1px solid var(--light-line-color);
+  padding: 8px;
+}

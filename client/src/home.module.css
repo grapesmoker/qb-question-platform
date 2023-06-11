@@ -6,6 +6,6 @@
 .mainPanel {
     flex-grow: 1;
     flex-shrink: 1;
-    overflow-x: hidden;
+    overflow-x: auto;
     padding: 1em 2em;
 }
