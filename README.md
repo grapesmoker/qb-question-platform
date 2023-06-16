@@ -19,6 +19,7 @@ This will create the virtual environment, initialize it, and install the Python 
 create the database models:
 
 ```commandline
+cd qbplatform
 ./manage.py migrate
 ```
 
@@ -39,7 +40,7 @@ anything you want. You only need to do this once. Now you should be able to laun
 ./manage.py runserver
 ```
 
-This will make the development server available on your localhost at https://127.0.0.1:8000. Navigate to this url to
+This will make the development server available on your localhost at http://127.0.0.1:8000. Navigate to this url to
 verify that your setup is running correctly, and then visit the `/admin` endpoint to log into the admin interface with
 the superuser credentials you created.
 
