@@ -1,5 +1,7 @@
 *.*~
 *venv*/**
+client/node_modules
+client/src/package-lock.json
 .idea/**
 *.sqlite3
 __pycache__/**

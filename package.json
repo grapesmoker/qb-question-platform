@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@nytimes/react-prosemirror": "^0.2.3"
+  }
+}

@@ -1,0 +1,65 @@
+:root {
+  --primary-color: #521AF1;
+  --desaturated-primary: #987CE7;
+  --dark-color: #250B6C;
+  --light-color: #E4DBFF;
+  --text-color: #1F1F1F;
+  --subtitle-color: #999999;
+  --line-color: #333333;
+  --light-line-color: #E8E8E8;
+  --light-font-color: #A7A7A7;
+  --light-background: #F8F8F8;
+  --red: #CC0000;
+  --red-light: #FEE2E2;
+  --red-light-border: #F9CCCC; 
+  --red-dark: #9A0A0A;
+  --annotation-color: #FA1EE4;
+  --heading-font: 'Geologica';
+  --body-font: 'Geologica';
+}
+
+html, body, #root, #root > div {
+  height: 100%;
+}
+
+html {
+  overflow: hidden;
+}
+
+button {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  background-color: var(--light-background);
+
+  border: 1px solid var(--line-color);
+  border-radius: 4px;
+
+  padding: 8px;
+  margin: none;
+
+  font-family: var(--body-font);
+  font-weight: 400;
+}
+
+select {
+  padding: 8px;
+
+  border-radius: 4px;
+  border-color: var(--light-line-color);
+
+  background-color: var(--light-background);
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid var(--light-line-color);
+}
+
+table th, table td {
+  border: 1px solid var(--light-line-color);
+  padding: 8px;
+}

@@ -1,0 +1,72 @@
+.sideNav {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    flex: 1;
+    max-width: 300px;
+    min-width: 200px;
+    border-right: 1px solid var(--line-color);
+}
+
+.siteTitle {
+    font-family: var(--heading-font);
+    font-weight: 400;
+    font-variation-settings: 'SHRP' 50;
+    font-size: 3em;
+    text-align: center;
+    background-color: white;
+    padding: .25em;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.siteTitle a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nameNotificationBox {
+    display: flex;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.setNameBox {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    padding: 20px 0px 20px 20px;
+}
+
+.setName {
+    font-size: 24px;
+}
+
+.notificationBox {
+    display: flex;
+    min-width: 56px;
+    background-color: var(--light-background);
+    color: var(--primary-color);
+    font-size: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
+.navList, .navSubList {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding-left: 1em;
+}
+
+.navLink, .navSubLink {
+    color: var(--primary-color);
+    text-underline-offset: .25em;
+}
+
+.navLink {
+    padding: 0.5em 1em;
+    font-family: var(--body-font);
+}
+
+.navSubLink  {
+    padding: 0.5em 1em 0.5em .5em;
+}
