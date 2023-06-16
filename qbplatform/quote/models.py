@@ -1,6 +1,12 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
 # Create your models here.
+
+
+class QuoteUser(models.Model):
+    # extend the user model. we'll want to add things to this later
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class Tournament(models.Model):
