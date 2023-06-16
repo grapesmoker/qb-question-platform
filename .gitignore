@@ -1,4 +1,8 @@
 *.*~
 *venv*/**
-node_modules
-src/package-lock.json
+client/node_modules
+client/src/package-lock.json
+.idea/**
+*.sqlite3
+__pycache__/**
+*.pyc
