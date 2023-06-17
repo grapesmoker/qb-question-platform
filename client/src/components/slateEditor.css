@@ -1,0 +1,114 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: .5em;
+  width: 60em;
+}
+
+[data-slate-editor="true"] {
+  margin-top: 0.75em;
+  padding: 0.25em 1em;
+  border: 1px solid var(--light-line-color);
+  border-radius: 0.25em;
+  font-size: 1em;
+  font-family: "Times New Roman", Times, serif;
+  line-height: 1.5em;
+}
+
+[data-slate-editor="true"]:focus {
+  outline: none;
+}
+
+accept {
+  color: green;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  column-gap: 2em;
+  font-weight: 300;
+  font-family: var(--body-font);
+  color: var(--light-font-color);
+}
+
+.editor-toolbar-buttons {
+  display: flex;
+  column-gap: 1em;
+}
+
+.editor-toolbar-copy-question {
+  background-color: var(--light-background);
+  border-color: var(--light-line-color);
+}
+
+.editor-toolbar-delete-question {
+  background-color: var(--red-light);
+  color: var(--red-dark);
+  border-color: var(--red-light-border);
+}
+
+.editor-toolbar-question-length {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 1em;
+}
+
+.editor-category-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  column-gap: 2em;
+  font-family: var(--body-font);
+  font-weight: 300;
+  color: var(--text-color);
+}
+
+.editor-category-input {
+  font-family: var(--body-font);
+  font-weight: 300;
+  color: var(--text-color);
+
+  margin-left: 8px;
+}
+
+.pronunciation-guide {
+  background-color: #ececec;
+  color: var(--primary-color) !important;
+  font-weight: 700;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.bubble-menu {
+  display: flex;
+  background-color: var(--primary-color);
+  opacity: .9;
+  border-radius: 4px;
+}
+
+.bubble-menu button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-right: 2px solid var(--desaturated-primary);
+  border-radius: 0px !important;
+}
+
+.bubble-menu button:last-child {
+  border: none;
+}
+
+.answerline {
+  display: flex;
+  column-gap: 8px;
+  align-items: baseline;
+  width: 100%;
+}
+
+.answerline-editor {
+  flex-grow: 1;
+}

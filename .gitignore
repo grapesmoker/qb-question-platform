@@ -1,6 +1,6 @@
 *.*~
 *venv*/**
-client/node_modules
+node_modules
 client/src/package-lock.json
 .idea/**
 *.sqlite3
