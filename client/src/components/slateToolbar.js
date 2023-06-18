@@ -2,8 +2,15 @@ import { useSlate, useFocused } from "slate-react";
 import { useRef, useEffect } from "react";
 import { Transforms, Editor, Range } from "slate";
 import { FaBold, FaItalic, FaUnderline, FaNapster } from "react-icons/fa";
+import _ from "lodash";
 
 export function SlateToolbar({ value }) {
+  const paragraphs = _.filter(value, (node) => node.type === "paragraph");
+  const pgs = _.map(
+    _.filter(value, (node) => node.type === "pronunciation-guide"),
+    (node) => node.children[0].children[0].text.length
+  );
+
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar-buttons">
@@ -11,7 +18,13 @@ export function SlateToolbar({ value }) {
         <button className="editor-toolbar-delete-question">Delete</button>
       </div>
       <div className="editor-toolbar-question-length">
-        <span>Characters: {JSON.stringify(value[0].children[0].text.length)}</span>
+        {/* <span>Characters: {JSON.stringify(value[0].children[0].text.length)}</span> */}
+        <span>
+          Characters:{" "}
+          {_.map(paragraphs, (node) => node.children[0].text.length)
+            .concat(pgs)
+            .reduce((partialSum, a) => partialSum + a, 0)}
+        </span>
       </div>
     </div>
   );
