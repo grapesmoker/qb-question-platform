@@ -5,23 +5,28 @@ import { createEditor } from "slate";
 import { withHistory } from "slate-history";
 import "./slateEditor.css";
 import { SlateToolbar, HoveringToolbar, toggleMark } from "./slateToolbar";
-import { Answerline } from "./answerline";
+import { MainAnswer } from "./answerline";
+import { withInlines, withEditableVoids } from "./slateUtils";
 
 const HOTKEYS = {
   "mod+b": "bold",
   "mod+i": "italic",
-  "mod+u": "underline"
+  "mod+u": "underline",
 };
 
 const SlateEditor = () => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
 
-  const editor = useMemo(() => withInlines(withReact(withHistory(createEditor()))), []);
+  const editor = useMemo(
+    () =>
+      withEditableVoids(withInlines(withReact(withHistory(createEditor())))),
+    []
+  );
 
   return (
     <div className="editor-container">
-      <Slate editor={editor} initialValue={initialValue}>
+      <Slate editor={editor} initialValue={initialValue} className = 'slate-editor'>
         <SlateToolbar editor={editor} />
         <HoveringToolbar />
         <Editable
@@ -40,7 +45,6 @@ const SlateEditor = () => {
             }
           }}
         />
-        <Answerline />
       </Slate>
     </div>
   );
@@ -56,6 +60,13 @@ const Element = ({ attributes, children, element }) => {
           <span className="pronunciation-guide">("{element.pg}")</span>
         </span>
       );
+    case 'main-answer':
+      return <MainAnswer {...attributes} />
+    case 'answerline':
+      return <div className="answerline" {...attributes}>
+        <hr />
+        {children}
+      </div>
     default:
       return (
         <p style={style} {...attributes}>
@@ -94,36 +105,17 @@ const initialValue = [
       },
     ],
   },
+  {
+    type: "answerline",
+    children: [
+      {
+        type: "main-answer",
+        children: [
+          {text: "The Spirit Catches You And You Fall Down"}
+        ]
+      },
+    ],
+  },
 ];
-
-const withInlines = editor => {
-  const {
-    insertData,
-    insertText,
-    isInline,
-    isElementReadOnly,
-    isSelectable,
-  } = editor
-
-  editor.isInline = element =>
-    ['link', 'button', 'badge'].includes(element.type) || isInline(element)
-
-  editor.isElementReadOnly = element =>
-    element.type === 'badge' || isElementReadOnly(element)
-
-  editor.isSelectable = element =>
-    element.type !== 'badge' && isSelectable(element)
-
-  editor.insertText = text => {
-      insertText(text)
-  }
-
-  editor.insertData = data => {
-    insertData(data)
-  }
-
-  return editor
-}
-
 
 export default SlateEditor;

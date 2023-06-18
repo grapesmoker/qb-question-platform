@@ -12,7 +12,7 @@ p {
 
 [data-slate-editor="true"] {
   margin-top: 0.75em;
-  padding: 0.25em 1em;
+  padding: 0.5em 1em;
   border: 1px solid var(--light-line-color);
   border-radius: 0.25em;
   font-size: 1em;
@@ -115,12 +115,18 @@ accept {
 .answerline {
   display: flex;
   column-gap: 8px;
-  align-items: baseline;
+  align-items: center;
   width: 100%;
 }
 
-.answerline-editor {
-  flex-grow: 1;
+.answerline [data-slate-editor="true"] {
+  margin-top: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.answerline > .editor-container {
+  height: 100%;
 }
 
 .main-answer {
