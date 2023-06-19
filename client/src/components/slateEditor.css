@@ -1,8 +1,13 @@
 .editor-container {
   display: flex;
   flex-direction: column;
-  row-gap: .5em;
-  width: 60em;
+  row-gap: 0.5em;
+  width: 80%;
+  max-width: 800px;
+}
+
+p {
+  display: inline;
 }
 
 [data-slate-editor="true"] {
@@ -86,8 +91,13 @@ accept {
 .bubble-menu {
   display: flex;
   background-color: var(--primary-color);
-  opacity: .9;
+  opacity: 0.9;
   border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  top: -10000px;
+  left: -10000px;
+  margin-top: -6px;
 }
 
 .bubble-menu button {
@@ -111,4 +121,8 @@ accept {
 
 .answerline-editor {
   flex-grow: 1;
+}
+
+.main-answer {
+  font-family: 'Times New Roman', Times, serif;
 }
