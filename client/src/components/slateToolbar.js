@@ -3,7 +3,7 @@ import { useRef, useEffect } from "react";
 import { Transforms, Editor, Range } from "slate";
 import { FaBold, FaItalic, FaUnderline, FaNapster } from "react-icons/fa";
 
-export function SlateToolbar() {
+export function SlateToolbar({ value }) {
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar-buttons">
@@ -11,8 +11,7 @@ export function SlateToolbar() {
         <button className="editor-toolbar-delete-question">Delete</button>
       </div>
       <div className="editor-toolbar-question-length">
-        <span>"Lines": </span>
-        <span>Characters: </span>
+        <span>Characters: {JSON.stringify(value[0].children[0].text.length)}</span>
       </div>
     </div>
   );

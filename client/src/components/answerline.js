@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from "react";
 import isHotkey from "is-hotkey";
-import { Editable, withReact, Slate, useSlate, useSlateStatic } from "slate-react";
+import { Editable, withReact, Slate, useSlateStatic } from "slate-react";
 import { createEditor, Transforms } from "slate";
 import { withHistory } from "slate-history";
 import "./slateEditor.css";
 import { HoveringToolbar, toggleMark } from "./slateToolbar";
 import { Leaf, Element, withInlines } from "./slateUtils";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 const HOTKEYS = {
   "mod+b": "bold",
@@ -18,16 +18,37 @@ export const MainAnswer = ({ attributes }) => {
   return (
     // Need contentEditable=false or Firefox has issues with certain input types.
     <>
-      <div {...attributes} className="answerline" contentEditable={false}>
-        <span>ANSWER:</span>
-        <RichTextEditor className = 'main-answer'/>
+      <div
+        {...attributes}
+        className="answerline-instruction"
+        contentEditable={false}
+      >
+        <span>ANSWER: </span>
+        <RichTextEditor className="main-answer"  />
         <InsertAnswerlineInstructionButton />
       </div>
     </>
   );
 };
 
-const RichTextEditor = () => {
+export const AnswerlineInstruction = ({ attributes }) => {
+  return (
+    // Need contentEditable=false or Firefox has issues with certain input types.
+    <>
+      <div
+        {...attributes}
+        className="answerline-instruction"
+        contentEditable={false}
+      >
+        <span>ANSWER: </span>
+        <RichTextEditor className="answerline-instruction-editor"/>
+        <RemoveAnswerlineInstructionButton />
+      </div>
+    </>
+  );
+};
+
+const RichTextEditor = ({ init }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
 
@@ -37,23 +58,23 @@ const RichTextEditor = () => {
   );
 
   return (
-      <Slate editor={editor} initialValue={initialValue}>
-        <HoveringToolbar />
-        <Editable
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          spellCheck
-          onKeyDown={(event) => {
-            for (const hotkey in HOTKEYS) {
-              if (isHotkey(hotkey, event)) {
-                event.preventDefault();
-                const mark = HOTKEYS[hotkey];
-                toggleMark(editor, mark);
-              }
+    <Slate editor={editor} initialValue={initialValue}>
+      <HoveringToolbar />
+      <Editable
+        renderElement={renderElement}
+        renderLeaf={renderLeaf}
+        spellCheck
+        onKeyDown={(event) => {
+          for (const hotkey in HOTKEYS) {
+            if (isHotkey(hotkey, event)) {
+              event.preventDefault();
+              const mark = HOTKEYS[hotkey];
+              toggleMark(editor, mark);
             }
-          }}
-        />
-      </Slate>
+          }
+        }}
+      />
+    </Slate>
   );
 };
 
@@ -62,31 +83,50 @@ const initialValue = [
     type: "paragraph",
     children: [
       {
-        text: "The Spirit Catches You And You Fall Down",
+        text: "",
       },
     ],
   },
 ];
 
-const insertAnswerlineInstruction = editor => {
-  const text = { text: '' }
+const insertAnswerlineInstruction = (editor) => {
+  const text = { text: "" };
   const voidNode = {
-    type: 'main-answer',
+    type: "answerline-instruction",
+    position: editor.children[1].length,
     children: [text],
-  }
-  Transforms.insertNodes(editor, voidNode)
-}
+  };
+  Transforms.insertNodes(editor, voidNode, {
+    at: [1, 1],
+  });
+};
 
 const InsertAnswerlineInstructionButton = () => {
-  const editor = useSlateStatic()
+  const editor = useSlateStatic();
   return (
     <button
-      onMouseDown={event => {
-        event.preventDefault()
-        insertAnswerlineInstruction(editor)
+      className="answerline-button"
+      onClick={(event) => {
+        event.preventDefault();
+        insertAnswerlineInstruction(editor);
       }}
     >
       <FaPlus />
     </button>
-  )
-}
+  );
+};
+
+const RemoveAnswerlineInstructionButton = () => {
+  const editor = useSlateStatic();
+  return (
+    <button
+      className="answerline-button"
+      onClick={(event) => {
+        event.preventDefault();
+        Transforms.removeNodes(editor, { at: [1, 1] });
+      }}
+    >
+      <FaTimes />
+    </button>
+  );
+};

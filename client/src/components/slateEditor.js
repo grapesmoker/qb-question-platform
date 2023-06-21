@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import isHotkey from "is-hotkey";
 import { Editable, withReact, Slate } from "slate-react";
 import { createEditor } from "slate";
 import { withHistory } from "slate-history";
 import "./slateEditor.css";
 import { SlateToolbar, HoveringToolbar, toggleMark } from "./slateToolbar";
-import { MainAnswer } from "./answerline";
+import { AnswerlineInstruction, MainAnswer } from "./answerline";
 import { withInlines, withEditableVoids } from "./slateUtils";
 
 const HOTKEYS = {
@@ -17,7 +17,7 @@ const HOTKEYS = {
 const SlateEditor = () => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
-
+  const [value, setValue] = useState(initialValue);
   const editor = useMemo(
     () =>
       withEditableVoids(withInlines(withReact(withHistory(createEditor())))),
@@ -26,8 +26,16 @@ const SlateEditor = () => {
 
   return (
     <div className="editor-container">
-      <Slate editor={editor} initialValue={initialValue} className = 'slate-editor'>
-        <SlateToolbar editor={editor} />
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={value => {
+            setValue(value);
+        }}
+        initialValue={initialValue}
+        className="slate-editor"
+      >
+        <SlateToolbar value = {value}/>
         <HoveringToolbar />
         <Editable
           renderElement={renderElement}
@@ -46,6 +54,9 @@ const SlateEditor = () => {
           }}
         />
       </Slate>
+      <pre>
+        {JSON.stringify(value, null, 2)}
+      </pre>
     </div>
   );
 };
@@ -60,13 +71,19 @@ const Element = ({ attributes, children, element }) => {
           <span className="pronunciation-guide">("{element.pg}")</span>
         </span>
       );
-    case 'main-answer':
-      return <MainAnswer {...attributes} />
-    case 'answerline':
-      return <div className="answerline" {...attributes}>
-        <hr />
+    case "main-answer":
+      return <MainAnswer {...attributes} />;
+    case "answerline-instruction":
+      return <AnswerlineInstruction {...attributes}>
         {children}
-      </div>
+      </AnswerlineInstruction>;
+    case "answerline":
+      return (
+        <div className="answerline" {...attributes}>
+          <hr></hr>
+          {children}
+        </div>
+      );
     default:
       return (
         <p style={style} {...attributes}>
@@ -110,9 +127,7 @@ const initialValue = [
     children: [
       {
         type: "main-answer",
-        children: [
-          {text: "The Spirit Catches You And You Fall Down"}
-        ]
+        children: [{ text: "The Spirit Catches You And You Fall Down" }],
       },
     ],
   },
