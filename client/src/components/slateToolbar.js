@@ -11,6 +11,14 @@ export function SlateToolbar({ value }) {
     (node) => node.children[0].children[0].text.length
   );
 
+  const lengths = _.map(paragraphs, (node) =>
+    _.map(node.children, "text").map((text) => text.length)
+  )
+    .flat()
+    .concat(pgs);
+
+  console.log(lengths);
+
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar-buttons">
@@ -20,10 +28,7 @@ export function SlateToolbar({ value }) {
       <div className="editor-toolbar-question-length">
         {/* <span>Characters: {JSON.stringify(value[0].children[0].text.length)}</span> */}
         <span>
-          Characters:{" "}
-          {_.map(paragraphs, (node) => node.children[0].text.length)
-            .concat(pgs)
-            .reduce((partialSum, a) => partialSum + a, 0)}
+          Characters: {lengths.reduce((partialSum, a) => partialSum + a, 0)}
         </span>
       </div>
     </div>
