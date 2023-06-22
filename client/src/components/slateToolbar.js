@@ -17,8 +17,6 @@ export function SlateToolbar({ value }) {
     .flat()
     .concat(pgs);
 
-  console.log(lengths);
-
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar-buttons">
