@@ -66,5 +66,10 @@ class BonusPart(models.Model):
 
     bonus = models.ForeignKey(Bonus, on_delete=models.CASCADE)
 
-    part_number = models.IntegerField()
+    part_number = models.IntegerField(
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(3),
+        ]
+    )
     difficulty = models.CharField(max_length=1, choices=BonusPartDifficulty.choices, null=True)
