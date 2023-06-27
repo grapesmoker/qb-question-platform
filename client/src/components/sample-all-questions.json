@@ -1,34 +1,57 @@
 {
     "questions": [
         {
+            "category": "Literature",
+            "subcategory": "American Literature",
+            "status": "unclaimed",
+            "slot": "Poetry, 1600-1850"
+        },
+        {
             "answer": "Walt Whitman",
             "category": "Literature",
-            "subcategory": "American Literature"
+            "subcategory": "American Literature",
+            "status": "claimed",
+            "slot": "Poetry, 1800-1900",
+            "author": "RR"
         },
         {
             "answer": "The Changing Light at Sandover",
             "category": "Literature",
-            "subcategory": "American Literature"
+            "subcategory": "American Literature",
+            "status": "written",
+            "author": "RR"
         },
         {
             "answer": "Life on Mars",
             "category": "Literature",
-            "subcategory": "American Literature"
+            "subcategory": "American Literature",
+            "status": "edited",
+            "author": "RR",
+            "editor": "CM"
         },
         {
             "answer": "Elegy Written in a Country Churchyard",
             "category": "Literature",
-            "subcategory": "British Literature"
+            "subcategory": "British Literature",
+            "status": "claimed"
         },
         {
             "answer": "Terence",
             "category": "Literature",
-            "subcategory": "British Literature"
+            "subcategory": "British Literature",
+            "status": "claimed"
         },
         {
             "answer": "Westminster Abbey",
             "category": "Literature",
-            "subcategory": "British Literature"
+            "subcategory": "British Literature",
+            "status": "claimed"
+        },
+        {
+            "answer": "MOVE bombing",
+            "category": "History",
+            "subcategory": "American History",
+            "status": "claimed"
         }
     ]
 }

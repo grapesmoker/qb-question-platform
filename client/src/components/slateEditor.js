@@ -29,34 +29,32 @@ const SlateEditor = () => {
       <Slate
         editor={editor}
         value={value}
-        onChange={value => {
-            setValue(value);
+        onChange={(value) => {
+          setValue(value);
         }}
         initialValue={initialValue}
         className="slate-editor"
       >
-        <SlateToolbar value = {value}/>
+        <SlateToolbar value={value} />
         <HoveringToolbar />
-        <Editable
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          placeholder="Write a question…"
-          spellCheck
-          autoFocus
-          onKeyDown={(event) => {
-            for (const hotkey in HOTKEYS) {
-              if (isHotkey(hotkey, event)) {
-                event.preventDefault();
-                const mark = HOTKEYS[hotkey];
-                toggleMark(editor, mark);
+          <Editable
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            placeholder="Write a question…"
+            spellCheck
+            autoFocus
+            onKeyDown={(event) => {
+              for (const hotkey in HOTKEYS) {
+                if (isHotkey(hotkey, event)) {
+                  event.preventDefault();
+                  const mark = HOTKEYS[hotkey];
+                  toggleMark(editor, mark);
+                }
               }
-            }
-          }}
-        />
+            }}
+          />
       </Slate>
-      <pre>
-        {JSON.stringify(value, null, 2)}
-      </pre>
+      <pre>{JSON.stringify(value, null, 2)}</pre>
     </div>
   );
 };
@@ -74,9 +72,11 @@ const Element = ({ attributes, children, element }) => {
     case "main-answer":
       return <MainAnswer {...attributes} />;
     case "answerline-instruction":
-      return <AnswerlineInstruction {...attributes}>
-        {children}
-      </AnswerlineInstruction>;
+      return (
+        <AnswerlineInstruction {...attributes}>
+          {children}
+        </AnswerlineInstruction>
+      );
     case "answerline":
       return (
         <div className="answerline" {...attributes}>
@@ -127,7 +127,7 @@ const initialValue = [
     children: [
       {
         type: "main-answer",
-        children: [{ text: "The Spirit Catches You And You Fall Down" }],
+        children: [{ text: "" }],
       },
     ],
   },

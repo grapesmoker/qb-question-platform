@@ -1,35 +1,134 @@
 import _ from "lodash";
 import tables from "./tables.module.css";
+import classnames from "classnames";
+
+import { FaChevronDown } from "react-icons/fa";
 
 export default function AllQuestions() {
   const questionData = require("./sample-all-questions.json");
   const numPackets = [1, 2, 3, 4, 5];
-  var subcats = _.groupBy(questionData.questions, "subcategory");
-  console.log(subcats);
-  //   subcats = ["American Literature", "British Literature"];
+
+  var cats = _.groupBy(questionData.questions, "category");
+  const all_subcats = {
+    Literature: [
+      "American Literature",
+      "British Literature",
+      "European Literature",
+      "World Literature",
+    ],
+    History: [
+      "American History",
+      "European History",
+      "World History",
+      "Other History",
+    ],
+  };
+
+  console.log(cats);
 
   return (
     <div>
       <h2>All Questions</h2>
       <div style={{ overflowX: "auto" }}>
         <table>
-          <thead>
+          {/* <thead>
             <tr>
               <th className={tables.headerColumn}>Subcategory</th>
               {numPackets.map((packet) => {
                 return <th className={tables.column}>{packet}</th>;
               })}
             </tr>
-          </thead>
+          </thead> */}
           <tbody>
-            {Object.keys(subcats).map((subcat) => {
+            {Object.keys(cats).map((cat) => {
+              // console.log(all_subcats[cat]);
               return (
-                <tr>
-                  <td className={tables.headerColumn}>{subcat}</td>
-                  {subcats[subcat].map((answer) => (
-                    <td className={tables.column}>{answer.answer}</td>
-                  ))}
-                </tr>
+                <>
+                  <tr>
+                    <td
+                      className={tables.catColumn}
+                      colSpan={numPackets.length + 1}
+                    >
+                      {cat}
+                    </td>
+                  </tr>
+                  {all_subcats[cat].map(function (subcat_name) {
+                    console.log(_.groupBy(cats[cat], "subcategory"));
+                    return (
+                      <tr className={tables.subcatRow}>
+                        <td className={tables.headerColumn}>{subcat_name}</td>
+                        {subcat_name in _.groupBy(cats[cat], "subcategory")
+                          ? numPackets
+                              .map((x) => x - 1)
+                              .map((q_num) => {
+                                let q = _.groupBy(cats[cat], "subcategory")[
+                                  subcat_name
+                                ][q_num];
+                                if (
+                                  q_num + 1 >
+                                  _.groupBy(cats[cat], "subcategory")[
+                                    subcat_name
+                                  ].length
+                                ) {
+                                  return (
+                                    <td
+                                      className={classnames(
+                                        tables.questionCell,
+                                        tables.unclaimed
+                                      )}
+                                    >
+                                      {""}
+                                      <br />
+                                      <button className={tables.questionStatus}>
+                                        unclaimed
+                                        <FaChevronDown
+                                          className={tables.arrowIcon}
+                                        />
+                                      </button>
+                                    </td>
+                                  );
+                                } else {
+                                  return (
+                                    <td
+                                      className={classnames(
+                                        tables.questionCell,
+                                        tables[q.status]
+                                      )}
+                                    >
+                                      {q.answer ? q.answer : q.slot}
+                                      <br />
+                                      <div className={tables.questionStatusRow}>
+                                      <button className={tables.questionStatus}>
+                                        {q.status}
+                                        <FaChevronDown
+                                          className={tables.arrowIcon}
+                                        />
+                                      </button>
+                                      <span>{q.author ? `<${q.author}>`:''}{q.editor ? ` |${q.editor}|`:''}</span>
+                                      </div>
+                                      
+                                    </td>
+                                  );
+                                }
+                              })
+                          : numPackets
+                              .map((x) => x - 1)
+                              .map((q_num) => (
+                                <td className={classnames(tables.questionCell, tables.unclaimed)}>
+                                  {""}
+                                  <br />
+                                  <button className={tables.questionStatus}>
+                                    unclaimed
+                                    <FaChevronDown
+                                      className={tables.arrowIcon}
+                                    />
+                                  </button>
+                                </td>
+                              ))}
+                      </tr>
+                    );
+                  })}
+                </>
               );
             })}
           </tbody>

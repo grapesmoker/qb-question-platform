@@ -1,3 +1,4 @@
+
 :root {
   --primary-color: #521AF1;
   --desaturated-primary: #987CE7;
@@ -14,6 +15,10 @@
   --red-light-border: #F9CCCC; 
   --red-dark: #9A0A0A;
   --annotation-color: #FA1EE4;
+  --light-yellow: #FFFBDB;
+  --light-red: #FFE8DB;
+  --light-blue: #DBF8FF;
+  --light-green: #DCFFDB;
   --heading-font: 'Geologica';
   --body-font: 'Geologica';
 }

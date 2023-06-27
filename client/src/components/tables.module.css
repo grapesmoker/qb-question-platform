@@ -1,7 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
 .headerColumn {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
+  width: 70px;
 }
 
-.column {
-    width: 160px;
+.catColumn {
+  font-weight: 700;
+  border-bottom: 2px solid var(--line-color);
+  margin-top: 12px;
+}
+
+.unclaimed {
+  color: gray;
+}
+
+.claimed {
+  background-color: var(--light-red);
+  color: #6c3a0b;
+}
+
+.written {
+  background-color: var(--light-blue);
+  color: #190b6c;
+}
+
+.edited {
+  background-color: var(--light-green);
+  color: #0B6C15
+}
+
+.subcatRow {
+  display: flex;
+}
+
+.questionCell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  font-family: "DM Sans";
+  font-weight: 500;
+
+  width: 200px;
+
+  padding: 8px;
+}
+
+.questionStatusRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.questionStatus {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+
+  padding: 0px;
+  margin-top: 4px;
+
+  font-family: Inter;
+  font-size: 11px;
+}
+
+.arrowIcon {
+  margin-left: 4px;
 }
