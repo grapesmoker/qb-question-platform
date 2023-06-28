@@ -3,6 +3,7 @@ import isHotkey from "is-hotkey";
 import { Editable, withReact, Slate } from "slate-react";
 import { createEditor } from "slate";
 import { withHistory } from "slate-history";
+import { Tooltip } from "react-tooltip";
 import "./slateEditor.css";
 import { SlateToolbar, HoveringToolbar, toggleMark } from "./slateToolbar";
 import { AnswerlineInstruction, MainAnswer } from "./answerline";
@@ -37,22 +38,22 @@ const SlateEditor = () => {
       >
         <SlateToolbar value={value} />
         <HoveringToolbar />
-          <Editable
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
-            placeholder="Write a question…"
-            spellCheck
-            autoFocus
-            onKeyDown={(event) => {
-              for (const hotkey in HOTKEYS) {
-                if (isHotkey(hotkey, event)) {
-                  event.preventDefault();
-                  const mark = HOTKEYS[hotkey];
-                  toggleMark(editor, mark);
-                }
+        <Editable
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          placeholder="Write a question…"
+          spellCheck
+          autoFocus
+          onKeyDown={(event) => {
+            for (const hotkey in HOTKEYS) {
+              if (isHotkey(hotkey, event)) {
+                event.preventDefault();
+                const mark = HOTKEYS[hotkey];
+                toggleMark(editor, mark);
               }
-            }}
-          />
+            }
+          }}
+        />
       </Slate>
       <pre>{JSON.stringify(value, null, 2)}</pre>
     </div>
@@ -64,9 +65,16 @@ const Element = ({ attributes, children, element }) => {
   switch (element.type) {
     case "pronunciation-guide":
       return (
-        <span style={style} {...attributes}>
+        <span
+          data-tooltip-id={"pg-" + element.pg}
+          data-tooltip-content={element.pg}
+          data-tooltip-place="top"
+          style={style}
+          {...attributes}
+        >
+          <Tooltip id={"pg-" + element.pg} />
           {children}
-          <span className="pronunciation-guide">("{element.pg}")</span>
+          {/* <span className="pronunciation-guide">("{element.pg}")</span> */}
         </span>
       );
     case "main-answer":
@@ -79,7 +87,7 @@ const Element = ({ attributes, children, element }) => {
       );
     case "answerline":
       return (
-        <div className="answerline" {...attributes}>
+        <div contentEditable={false} className="answerline" {...attributes}>
           <hr></hr>
           {children}
         </div>

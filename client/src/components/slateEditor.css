@@ -86,11 +86,20 @@ accept {
   margin-left: 8px;
 }
 
+span[data-tooltip-id] [data-slate-string="true"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--desaturated-primary);
+  text-underline-offset: 6px;
+}
+
 .pronunciation-guide {
-  background-color: #ececec;
   color: var(--primary-color) !important;
   font-weight: 700;
-  padding: 4px;
+  font-size: 10px;
+  text-decoration: underline;
+  text-decoration-color: var(--line-color);
+  text-underline-offset: 4px;
   border-radius: 8px;
 }
 
@@ -155,4 +164,11 @@ accept {
   border: 1px solid var(--light-line-color);
   height: 28px;
   width: 100%;
+}
+
+.answerline-guidelines {
+  font-family: 'DM Sans';
+  color: var(--primary-color);
+  float: right;
+  text-decoration: none;
 }
