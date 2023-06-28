@@ -19,7 +19,9 @@
             "category": "Literature",
             "subcategory": "American Literature",
             "status": "written",
-            "author": "RR"
+            "author": "RR",
+            "packet": 1,
+            "question": 2
         },
         {
             "answer": "Life on Mars",
@@ -27,7 +29,9 @@
             "subcategory": "American Literature",
             "status": "edited",
             "author": "RR",
-            "editor": "CM"
+            "editor": "CM",
+            "packet": 1,
+            "question": 15
         },
         {
             "answer": "Elegy Written in a Country Churchyard",

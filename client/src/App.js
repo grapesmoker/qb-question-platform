@@ -10,6 +10,7 @@ import SetAdmin from "./pages/setAdmin";
 import QuestionWriter from "./pages/questionWriter";
 import AllQuestions from "./components/allQuestions";
 import SlateEditor from "./components/slateEditor";
+import Packetizing from "./components/packetizingView";
 
 function Home() {
   return <span>kems</span>;
@@ -45,6 +46,7 @@ function App() {
               <Route path="/all-questions" element={<AllQuestions />} />
               <Route path="/set-admin" element={<SetAdmin />} />
               <Route path="/slate" element={<SlateEditor />} />
+              <Route path="/packetizing" element={<Packetizing />} />
               <Route path="*" element={<NoMatch />} />
             </Routes>
           </div>
