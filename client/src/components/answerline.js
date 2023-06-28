@@ -18,13 +18,19 @@ export const MainAnswer = ({ attributes }) => {
   return (
     // Need contentEditable=false or Firefox has issues with certain input types.
     <>
+      <a
+        className="answerline-guidelines"
+        href="http://minkowski.space/quizbowl/manuals/style/answerlines.html"
+      >
+        Answerline guidelines
+      </a>
       <div
         {...attributes}
         className="answerline-instruction"
         contentEditable={false}
       >
         <span>ANSWER: </span>
-        <RichTextEditor className="main-answer"  />
+        <RichTextEditor className="main-answer" />
         <InsertAnswerlineInstructionButton />
       </div>
     </>
@@ -41,7 +47,7 @@ export const AnswerlineInstruction = ({ attributes }) => {
         contentEditable={false}
       >
         <span>ANSWER: </span>
-        <RichTextEditor className="answerline-instruction-editor"/>
+        <RichTextEditor className="answerline-instruction-editor" />
         <RemoveAnswerlineInstructionButton />
       </div>
     </>
