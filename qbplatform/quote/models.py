@@ -13,6 +13,9 @@ class Tournament(models.Model):
 
     name = models.CharField(max_length=500)
 
+    def __str__(self):
+        return self.name
+
 
 class TournamentLocation(models.Model):
 
@@ -20,11 +23,17 @@ class TournamentLocation(models.Model):
     date = models.DateField()
     location = models.CharField(max_length=500, null=True)
 
+    def __str__(self):
+        return self.location + " site of tournament: " + str(self.tournament)
+
 
 class Packet(models.Model):
 
     name = models.CharField(max_length=500)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Packet " + self.name + " in tournament: " + str(self.tournament)
 
 
 class Tossup(models.Model):
@@ -40,6 +49,9 @@ class Tossup(models.Model):
     )
 
     packet = models.ForeignKey(Packet, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Tossup " + str(self.number) + " of packet: " + str(self.packet)
 
 
 class Bonus(models.Model):
@@ -57,6 +69,9 @@ class Bonus(models.Model):
         ]
     )
 
+    def __str__(self):
+        return "Bonus " + str(self.number) + " of packet: " + str(self.packet)
+
 
 class BonusPart(models.Model):
     class BonusPartDifficulty(models.TextChoices):
@@ -73,3 +88,6 @@ class BonusPart(models.Model):
         ]
     )
     difficulty = models.CharField(max_length=1, choices=BonusPartDifficulty.choices, null=True)
+
+    def __str__(self):
+        return "Bonus Part " + str(self.part_number) + " of bonus: " + str(self.bonus)
