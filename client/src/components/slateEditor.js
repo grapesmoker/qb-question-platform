@@ -72,7 +72,11 @@ const Element = ({ attributes, children, element }) => {
           style={style}
           {...attributes}
         >
-          <Tooltip id={"pg-" + element.pg} />
+          <Tooltip
+            id={"pg-" + element.pg}
+            className="pg-tooltip"
+            classNameArrow="pg-tooltip-arrow"
+          />
           {children}
           {/* <span className="pronunciation-guide">("{element.pg}")</span> */}
         </span>

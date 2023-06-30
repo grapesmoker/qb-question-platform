@@ -172,3 +172,21 @@ span[data-tooltip-id] [data-slate-string="true"] {
   float: right;
   text-decoration: none;
 }
+
+.pg-tooltip {
+  opacity: 1;
+  background-color: whitesmoke;
+
+  padding: 4px 8px;
+  margin-bottom: 0px;
+  color: var(--primary-color);
+
+  font-family: 'DM Sans';
+
+  border-radius: 0px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.pg-tooltip-arrow {
+  background-color: var(--primary-color);
+}
