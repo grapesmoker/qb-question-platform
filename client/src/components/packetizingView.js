@@ -8,12 +8,10 @@ import { Droppable } from "./dnd/droppable";
 import styles from "./dnd/dnd.module.css";
 
 export default function Packetizing() {
-  const questionData = require("./sample-all-questions.json");
-  const questions = [...Array(20).keys()];
-  const packets = [...Array(5).keys()];
-  const [packetAssignments, setPacketAssignments] = useState(
-    questionData.questions
-  );
+  const questionData = require("./sample-set-questions.json");
+  const questions = [...Array(20).keys()].map(x => x + 1);
+  const packets = [...Array(5).keys()].map(x => x + 1);
+  const [packetAssignments, setPacketAssignments] = useState(questionData);
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
@@ -21,7 +19,7 @@ export default function Packetizing() {
         <thead>
           <tr>
             {packets.map((num) => (
-              <th key={"packet" + num}>Packet {num + 1}</th>
+              <th key={"packet" + num}>Packet {num}</th>
             ))}
           </tr>
         </thead>
@@ -32,7 +30,7 @@ export default function Packetizing() {
             <tr key={"row" + id}>
               {packets.map((num) => (
                 <Droppable key={`${num}-${id}`} id={`${num}-${id}`}>
-                  {id + 1}
+                  {id}
                   {_.filter(
                     packetAssignments,
                     (question) =>
@@ -59,6 +57,25 @@ export default function Packetizing() {
 
   function handleDragEnd(event) {
     let newAssignments = packetAssignments;
+
+    const previous_loc = _.filter(
+      packetAssignments,
+      (question) => question.answer === event.active.id
+    );
+
+    newAssignments = _.map(newAssignments, (question) => {
+      if (
+        (question.packet === Number(event.over.id.substring(0, 1))) &
+        (question.question === Number(event.over.id.substring(2)))
+      ) {
+        question.packet = previous_loc[0].packet;
+        question.question = previous_loc[0].question;
+        return question;
+      } else {
+        return question;
+      }
+    });
+
     newAssignments = _.map(newAssignments, (question) => {
       if (question.answer === event.active.id) {
         question.packet = Number(event.over.id.substring(0, 1));

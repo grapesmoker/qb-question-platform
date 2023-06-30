@@ -30,7 +30,7 @@ export function Draggable(props) {
         <button className={tables.questionStatus}>
           {props.status}
         </button>
-        <span>
+        <span className={tables.authorTag}>
           {props.author ? `<${props.author}>` : ""}
           {props.editor ? ` |${props.editor}|` : ""}
         </span>

@@ -35,6 +35,16 @@
             "question": 15
         },
         {
+            "answer": "The House Behind the Cedars",
+            "category": "Literature",
+            "subcategory": "American Literature",
+            "status": "written",
+            "author": "RR",
+            "editor": "CM",
+            "packet": 1,
+            "question": 12
+        },
+        {
             "answer": "Elegy Written in a Country Churchyard",
             "category": "Literature",
             "subcategory": "British Literature",

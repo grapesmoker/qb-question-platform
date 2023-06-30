@@ -1,34 +1,42 @@
 .extraQuestions {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .packetColumn {
-    border-collapse: collapse;
-}
-
-.questionTab {
-    width: 150px;
-    padding: 8px;
-
-    border: 2px solid var(--light-line-color);
-
-    touch-action: none;
+  border-collapse: collapse;
 }
 
 .questionRow {
-    display: flex;
+  display: flex;
 }
 
 .questionSlot {
-    
-    width: 200px;
-    padding: 8px;    
-    
-    border: 1px solid var(--light-line-color);
+  width: 200px;
+  padding: 8px;
+
+  border: 1px solid var(--light-line-color);
 }
 
 .questionDiv {
-    display: flex;
-    align-items: center;    
-    column-gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.questionTab {
+  width: 150px;
+  padding: 8px;
+
+  border: 2px solid var(--light-line-color);
+
+  font-size: 12px;
+  font-weight: 500;
+
+  touch-action: none;
+}
+
+.authorTag {
+  font-size: 12px;
+  font-weight: 400;
 }
