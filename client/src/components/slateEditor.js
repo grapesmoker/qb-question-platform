@@ -78,7 +78,6 @@ const Element = ({ attributes, children, element }) => {
             classNameArrow="pg-tooltip-arrow"
           />
           {children}
-          {/* <span className="pronunciation-guide">("{element.pg}")</span> */}
         </span>
       );
     case "main-answer":
@@ -95,6 +94,23 @@ const Element = ({ attributes, children, element }) => {
           <hr></hr>
           {children}
         </div>
+      );
+    case "linting-error":
+      return (
+        <span
+          data-tooltip-id={"error-" + element.id}
+          data-tooltip-content={element.error}
+          data-tooltip-place="top"
+          style={style}
+          {...attributes}
+        >
+          <Tooltip
+            id={"error-" + element.id}
+            className="error-tooltip"
+            classNameArrow="error-tooltip-arrow"
+          />
+          {children}
+        </span>
       );
     default:
       return (

@@ -1,6 +1,12 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import isHotkey from "is-hotkey";
-import { Editable, withReact, Slate, useSlateStatic } from "slate-react";
+import {
+  Editable,
+  withReact,
+  Slate,
+  useSlate,
+  useSlateStatic,
+} from "slate-react";
 import { createEditor, Transforms } from "slate";
 import { withHistory } from "slate-history";
 import "./slateEditor.css";
@@ -18,12 +24,11 @@ export const MainAnswer = ({ attributes }) => {
   return (
     // Need contentEditable=false or Firefox has issues with certain input types.
     <>
-      <a
-        className="answerline-guidelines"
-        href="http://minkowski.space/quizbowl/manuals/style/answerlines.html"
-      >
-        Answerline guidelines
-      </a>
+      <div className="answerline-guidelines">
+        <a href="http://minkowski.space/quizbowl/manuals/style/answerlines.html">
+          Answerline guidelines
+        </a>
+      </div>
       <div
         {...attributes}
         className="answerline-instruction"
@@ -57,6 +62,7 @@ export const AnswerlineInstruction = ({ attributes }) => {
 const RichTextEditor = ({ init }) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
+  const [value, setValue] = useState(initialValue);
 
   const editor = useMemo(
     () => withInlines(withReact(withHistory(createEditor()))),
@@ -64,8 +70,16 @@ const RichTextEditor = ({ init }) => {
   );
 
   return (
-    <Slate editor={editor} initialValue={initialValue}>
+    <Slate
+      editor={editor}
+      value={value}
+      onChange={(value) => {
+        setValue(value);
+      }}
+      initialValue={initialValue}
+    >
       <HoveringToolbar />
+      <AnswerlineLinterButton />
       <Editable
         renderElement={renderElement}
         renderLeaf={renderLeaf}
@@ -89,7 +103,7 @@ const initialValue = [
     type: "paragraph",
     children: [
       {
-        text: "",
+        text: "John I [or John II, prompt on John]",
       },
     ],
   },
@@ -135,4 +149,40 @@ const RemoveAnswerlineInstructionButton = () => {
       <FaTimes />
     </button>
   );
+};
+
+const AnswerlineLinterButton = () => {
+  const editor = useSlate();
+  return (
+    <button
+      onClick={(event) => {
+        event.preventDefault();
+        LintAnswerline(editor);
+      }}
+    >
+      Answerline linter
+    </button>
+  );
+};
+
+const LintAnswerline = (editor) => {
+  let answerline = editor.children[0].children[0].text;
+  let error_causer = "John";
+  let matches = [...answerline.matchAll(new RegExp(error_causer, "gi"))].map(
+    (a) => a.index
+  );
+
+  console.log(editor.children[0]);
+  for (const match of matches) {
+    Transforms.insertText(
+      editor,
+      "Joao",
+      {
+        at: {
+          anchor: { path: [0, 0], offset: match },
+          focus: { path: [0, 0], offset: match + error_causer.length },
+        },
+      }
+    );
+  }
 };

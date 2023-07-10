@@ -167,9 +167,17 @@ span[data-tooltip-id] [data-slate-string="true"] {
 }
 
 .answerline-guidelines {
+  display: flex;
+  flex-direction: row-reverse;
+  column-gap: 8px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 8px;
   font-family: 'DM Sans';
   color: var(--primary-color);
-  float: right;
+}
+
+.answerline-guidelines a {
   text-decoration: none;
 }
 
