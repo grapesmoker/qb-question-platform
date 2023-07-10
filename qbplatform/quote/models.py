@@ -37,25 +37,32 @@ class Packet(models.Model):
     def __str__(self):
         return "Packet " + self.name + " in tournament: " + str(self.tournament)
 
-
+#   Model of a per-packet distribution
+#       has a one-to-many relationship with DistributionCategory
 class Distribution(models.Model):
 
-    number_packets = models.PositiveSmallIntegerField(null=True)
-    number_tossups_per_packet = models.PositiveSmallIntegerField(null=True, default=20)
-    number_bonuses_per_packet = models.PositiveSmallIntegerField(null=True, default=20)
+    num_tossups = models.PositiveSmallIntegerField(null=True, default=20)
+    num_bonuses = models.PositiveSmallIntegerField(null=True, default=20)
 
-    # a tournament/question set should only have one distribution
+    # a distribution is unique to a tournament/question set 
     tournament = models.OneToOneField(Tournament, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.tournament) + " distribution"
 
-
-class Category(TreeNode):
+#   Model of a category in a per-packet distribution
+#       is a hierarchy from top level category (e.g. Literature) to subcategory (e.g. American Literature) 
+#
+#       each (sub)category is allowed a specified range of tossups/bonuses per packet
+#           for example, an editor could specify 1/1 Other Arts but 0-1/0-1 Architecture
+class DistributionCategory(TreeNode):
 
     name = models.CharField(max_length=100)
-    number_tossups = models.PositiveSmallIntegerField(null=True)
-    number_bonuses = models.PositiveSmallIntegerField(null=True)
+    min_tossups = models.PositiveSmallIntegerField(null=True)
+    max_tossups = models.PositiveSmallIntegerField(null=True)
+    min_bonuses = models.PositiveSmallIntegerField(null=True)
+    max_bonuses = models.PositiveSmallIntegerField(null=True)
+
     distribution = models.ForeignKey(Distribution, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -81,7 +88,7 @@ class Tossup(models.Model):
 
     #Don't want to cascade delete because distribution might be adjusted after questions are written?
     #We could lock distribution on tournament creation, but that seems too restrictive
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(DistributionCategory, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return "Tossup " + str(self.number) + " of packet: " + str(self.packet)
@@ -104,7 +111,7 @@ class Bonus(models.Model):
 
     #Don't want to cascade delete because distribution might be adjusted after questions are written?
     #We could lock distribution on tournament creation, but that seems too restrictive
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(DistributionCategory, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return "Bonus " + str(self.number) + " of packet: " + str(self.packet)
