@@ -9,18 +9,17 @@
 }
 
 .siteTitle {
+    text-align: center;
+    background: linear-gradient(90deg, #e2c1ff 0%, #6876f9 50.52%, #521af1 100%);
+    padding: .25em;
+}
+
+.siteTitle a {    
     font-family: var(--heading-font);
     font-weight: 400;
     font-variation-settings: 'SHRP' 50;
     font-size: 3em;
-    text-align: center;
-    background-color: white;
-    padding: .25em;
-    border-bottom: 1px solid var(--line-color);
-}
-
-.siteTitle a {
-    color: var(--primary-color);
+    color: white;
     text-decoration: none;
 }
 
