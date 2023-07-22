@@ -36,10 +36,20 @@ class Tossup(models.Model):
         validators=[
             MinValueValidator(1),
             MaxValueValidator(5),
-        ]
+        ],
+        null=True,
+        blank=True
     )
+    power_position = models.IntegerField(null=True, blank=True)
+    representation = models.JSONField(null=True, blank=True)
 
-    packet = models.ForeignKey(Packet, on_delete=models.CASCADE)
+    packet = models.ForeignKey(Packet, on_delete=models.CASCADE, null=True)
+
+    def __repr__(self):
+        return self.tossup_text[0:40]
+
+    def __str__(self):
+        return self.tossup_text[0:40]
 
 
 class Bonus(models.Model):
