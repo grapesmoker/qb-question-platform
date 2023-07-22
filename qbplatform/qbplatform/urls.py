@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from quote.views import tossup_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tossups/', tossup_list)
 ]
