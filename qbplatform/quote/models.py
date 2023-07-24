@@ -10,11 +10,21 @@ class QuoteUser(models.Model):
     # extend the user model. we'll want to add things to this later
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+#   Model of a per-packet distribution
+#       has a one-to-many relationship with DistributionCategory
+class Distribution(models.Model):
+
+    name = models.CharField(max_length=500)
+    num_tossups = models.PositiveSmallIntegerField(null=True, default=20)
+    num_bonuses = models.PositiveSmallIntegerField(null=True, default=20)
+
+    def __str__(self):
+        return str(self.name)
 
 class Tournament(models.Model):
 
     name = models.CharField(max_length=500)
-    distribution = model.ForeignKey(Distribution, on_delete=SET_NULL, null=True)
+    distribution = models.ForeignKey(Distribution, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
@@ -38,35 +48,32 @@ class Packet(models.Model):
     def __str__(self):
         return "Packet " + self.name + " in tournament: " + str(self.tournament)
 
-#   Model of a per-packet distribution
-#       has a one-to-many relationship with DistributionCategory
-class Distribution(models.Model):
-
-    name = models.CharField(max_length=500)
-    num_tossups = models.PositiveSmallIntegerField(null=True, default=20)
-    num_bonuses = models.PositiveSmallIntegerField(null=True, default=20)
-
-    def __str__(self):
-        return str(self.name)
-
-#   Model of a category in a per-packet distribution
-#       is a hierarchy from top level category (e.g. Literature) to subcategory (e.g. American Literature) 
-#
-#       each (sub)category is allowed a specified range of tossups/bonuses per packet
-#           for example, an editor could specify 1/1 Other Arts but 0-1/0-1 Architecture
-class DistributionCategory(TreeNode):
+#   Category model is a hierarchy from top level category (e.g. Literature) to subcategory (e.g. American Literature) 
+class Category(TreeNode):
 
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+#   Model of a category within a distribution
+#       distinct from Category model so that there exists a notion of a category outside of the confines of a distribution
+#       each (sub)category is allowed a specified range of tossups/bonuses per packet
+#           for example, an editor could specify 1/1 Other Arts but 0-1/0-1 Architecture
+class DistributionCategory(models.Model):
+
+    name = models.CharField(max_length=100)
+
     min_tossups = models.PositiveSmallIntegerField(null=True)
     max_tossups = models.PositiveSmallIntegerField(null=True)
     min_bonuses = models.PositiveSmallIntegerField(null=True)
     max_bonuses = models.PositiveSmallIntegerField(null=True)
 
     distribution = models.ForeignKey(Distribution, on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category)
 
     def __str__(self):
-        return self.name + " for " + self.distribution.tournament.name
-
+        return self.name + " within " + self.distribution.name
 
 class Tossup(models.Model):
 
