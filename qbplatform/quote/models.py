@@ -14,6 +14,7 @@ class QuoteUser(models.Model):
 class Tournament(models.Model):
 
     name = models.CharField(max_length=500)
+    distribution = model.ForeignKey(Distribution, on_delete=SET_NULL, null=True)
 
     def __str__(self):
         return self.name
@@ -41,14 +42,12 @@ class Packet(models.Model):
 #       has a one-to-many relationship with DistributionCategory
 class Distribution(models.Model):
 
+    name = models.CharField(max_length=500)
     num_tossups = models.PositiveSmallIntegerField(null=True, default=20)
     num_bonuses = models.PositiveSmallIntegerField(null=True, default=20)
 
-    # a distribution is unique to a tournament/question set 
-    tournament = models.OneToOneField(Tournament, null=True, on_delete=models.CASCADE)
-
     def __str__(self):
-        return str(self.tournament) + " distribution"
+        return str(self.name)
 
 #   Model of a category in a per-packet distribution
 #       is a hierarchy from top level category (e.g. Literature) to subcategory (e.g. American Literature) 
