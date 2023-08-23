@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@nytimes/react-prosemirror": "^0.2.3"
+    "@nytimes/react-prosemirror": "^0.2.3",
+    "js-cookie": "^3.0.5"
   }
 }
