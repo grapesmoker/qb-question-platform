@@ -1,29 +1,37 @@
-
-:root {
-  --primary-color: #521AF1;
-  --desaturated-primary: #987CE7;
-  --dark-color: #250B6C;
-  --light-color: #E4DBFF;
-  --text-color: #1F1F1F;
-  --subtitle-color: #999999;
-  --line-color: #333333;
-  --light-line-color: #E8E8E8;
-  --light-font-color: #A7A7A7;
-  --light-background: #F8F8F8;
-  --red: #CC0000;
-  --red-light: #FEE2E2;
-  --red-light-border: #F9CCCC; 
-  --red-dark: #9A0A0A;
-  --annotation-color: #FA1EE4;
-  --light-yellow: #FFFBDB;
-  --light-red: #FFE8DB;
-  --light-blue: #DBF8FF;
-  --light-green: #DCFFDB;
-  --heading-font: 'Geologica';
-  --body-font: 'Geologica';
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("cabinet-grotesk/CabinetGrotesk-Extrabold.woff") format("woff");
 }
 
-html, body, #root, #root > div {
+:root {
+  --primary-color: #521af1;
+  --desaturated-primary: #987ce7;
+  --dark-color: #250b6c;
+  --light-color: #e4dbff;
+  --text-color: #1f1f1f;
+  --subtitle-color: #999999;
+  --line-color: #333333;
+  --light-line-color: #e8e8e8;
+  --light-font-color: #a7a7a7;
+  --light-background: #f8f8f8;
+  --red: #cc0000;
+  --red-light: #fee2e2;
+  --red-light-border: #f9cccc;
+  --red-dark: #9a0a0a;
+  --annotation-color: #fa1ee4;
+  --light-yellow: #fffbdb;
+  --light-red: #ffe8db;
+  --light-blue: #dbf8ff;
+  --light-green: #dcffdb;
+  --hyperlink: #1a70f1;
+  --heading-font: "Geologica";
+  --body-font: "Geologica";
+}
+
+html,
+body,
+#root,
+#root > div {
   height: 100%;
 }
 
@@ -59,12 +67,27 @@ select {
   background-color: var(--light-background);
 }
 
+a {
+  color: var(--hyperlink, #1a70f1);
+
+  /* Body */
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0.12px;
+
+  text-decoration: none;
+}
+
 table {
   border-collapse: collapse;
   border: 1px solid var(--light-line-color);
 }
 
-table th, table td {
+table th,
+table td {
   border: 1px solid var(--light-line-color);
   padding: 8px;
 }
